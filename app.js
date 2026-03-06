@@ -1,46 +1,20 @@
 import express from "express";
-import path, { dirname } from "path";
+import contactRouter from "./routes/contactRouter.js";
+import indexRouter from "./routes/indexRouter.js";
+import profileRouter from "./routes/profileRouter.js";
 import { fileURLToPath } from "url";
+import path, { dirname } from "path";
+
+const __filepath = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filepath);
+
 const app = express();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"), (err) => {
-    if (err) {
-      console.error(err);
-      res.end();
-    }
-  });
-});
-
-app.get("/about/:username", (req, res) => {
-  console.log(req.params);
-  res.sendFile(path.join(__dirname, "about.html"), (err) => {
-    if (err) {
-      console.error(err);
-      res.end();
-    }
-  });
-});
-
-app.get("/contact-me", (req, res) => {
-  res.sendFile(path.join(__dirname, "contact-me.html"), (err) => {
-    if (err) {
-      console.error(err);
-      res.end();
-    }
-  });
-});
-
+app.use("/about", profileRouter);
+app.use("/", indexRouter);
+app.use("/contact", contactRouter);
 app.get("/{*splat}", (req, res) => {
-  res.status(404).sendFile(path.join(__dirname, "404.html"), (err) => {
-    if (err) {
-      console.error(err);
-      res.end();
-    }
-  });
+  res.sendFile(path.join(__dirname, "404.html"));
 });
 
 const PORT = 3000;
