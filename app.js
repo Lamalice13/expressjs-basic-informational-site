@@ -33,7 +33,7 @@ app.get("/contact-me", (req, res) => {
   });
 });
 
-app.use((req, res) => {
+app.get("/{*splat}", (req, res) => {
   res.status(404).sendFile(path.join(__dirname, "404.html"), (err) => {
     if (err) {
       console.error(err);
