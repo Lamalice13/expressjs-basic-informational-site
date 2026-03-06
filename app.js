@@ -15,7 +15,8 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/about", (req, res) => {
+app.get("/about/:username", (req, res) => {
+  console.log(req.params);
   res.sendFile(path.join(__dirname, "about.html"), (err) => {
     if (err) {
       console.error(err);
