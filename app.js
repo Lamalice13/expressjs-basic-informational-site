@@ -5,6 +5,7 @@ import profileRouter from "./routes/profileRouter.js";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
 
+console.log(import.meta.url);
 const __filepath = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filepath);
 
