@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { getAuthorById } from "./controllers/profileControllers";
 
 const profileRouter = Router();
 
@@ -11,9 +12,6 @@ profileRouter.get("/", (req, res) => {
   });
 });
 
-profileRouter.get("/:profileId", (req, res) => {
-  const { profileId } = req.params;
-  res.send(`Here's the profile's id: ${profileId}`);
-});
+profileRouter.get("/:profileId", getAuthorById);
 
 export default profileRouter;
