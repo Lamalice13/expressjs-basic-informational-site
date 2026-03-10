@@ -1,4 +1,4 @@
-import db from "../db";
+import db from "../db.js";
 
 export async function getProfileById(req, res) {
   const { profileId } = req.params;
@@ -6,9 +6,7 @@ export async function getProfileById(req, res) {
   const profile = await db.getProfileById(Number(profileId));
 
   if (!profile) {
-    res.status(400).send("Profile not found!");
-    return;
+    throw new customNotFoundError("Author not found");
   }
-
-  res.send(`Profile name: ${profile}`);
+  res.send(`Profile name: ${profile.name}`);
 }

@@ -4,6 +4,8 @@ const profiles = [
   { id: 3, name: "Jason" },
 ];
 
-export async function getProfileById(profileId) {
+async function getProfileById(profileId) {
   return profiles.find((profile) => profile.id === profileId);
 }
+
+export default { getProfileById };
