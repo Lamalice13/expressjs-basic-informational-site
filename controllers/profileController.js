@@ -1,4 +1,5 @@
 import db from "../db.js";
+import { customNotFoundError } from "../errors/customNotFoundError.js";
 
 export async function getProfileById(req, res) {
   const { profileId } = req.params;

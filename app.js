@@ -2,6 +2,7 @@ import express from "express";
 import contactRouter from "./routes/contactRouter.js";
 import indexRouter from "./routes/indexRouter.js";
 import profileRouter from "./routes/profileRouter.js";
+import dogRouter from "./routes/dogRouter.js";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
 
@@ -13,6 +14,7 @@ const app = express();
 app.use("/about", profileRouter);
 app.use("/", indexRouter);
 app.use("/contact", contactRouter);
+app.use("/dog", dogRouter);
 app.get("/{*splat}", (req, res) => {
   res.sendFile(path.join(__dirname, "404.html"));
 });
